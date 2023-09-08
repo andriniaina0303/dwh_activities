@@ -26,16 +26,16 @@ class developpement(object):
         8 : "E#gb0Ka1"
     }
     SFTP_ACCESS = {
-        "sftphost": "sftp2.kontikimedia.com",
-        "sftpuser": "activitydwh",
-        "sftppassword": "aBi3&31qGqhY",
+        "sftphost": "",
+        "sftpuser": "",
+        "sftppassword": "",
         "sftppath": "/ftp_up/test_andre/"
     }
     SFTP_ACCESS_SEGMENT = {
-        "sftphost": "sftp2.kontikimedia.com",
-        "sftpuser": "segmentsdwh",
-        "sftppassword": "H!d6p55oKjlF",
-        "sftppath": "/ftp_up/test/"
+        "sftphost": "",
+        "sftpuser": "",
+        "sftppassword": "",
+        "sftppath": ""
     }
     
 class production(object):
@@ -64,14 +64,14 @@ class production(object):
         8 : "E#gb0Ka1"
     }
     SFTP_ACCESS = {
-        "sftphost": "sftp2.kontikimedia.com",
-        "sftpuser": "activitydwh",
-        "sftppassword": "aBi3&31qGqhY",
+        "sftphost": "",
+        "sftpuser": "",
+        "sftppassword": "",
         "sftppath": "/ftp_up/test_andre/"
     }
     SFTP_ACCESS_SEGMENT = {
-        "sftphost": "sftp2.kontikimedia.com",
-        "sftpuser": "segmentsdwh",
-        "sftppassword": "H!d6p55oKjlF",
+        "sftphost": "",
+        "sftpuser": "",
+        "sftppassword": "",
         "sftppath": "/ftp_up/"
     }
