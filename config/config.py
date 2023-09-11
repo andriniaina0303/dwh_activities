@@ -67,7 +67,7 @@ class production(object):
         "sftphost": "",
         "sftpuser": "",
         "sftppassword": "",
-        "sftppath": "/ftp_up/test_andre/"
+        "sftppath": "/ftp_up/"
     }
     SFTP_ACCESS_SEGMENT = {
         "sftphost": "",

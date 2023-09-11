@@ -36,7 +36,7 @@ def run_activities_export():
         start = datetime.now()
         verif = str(datetime.now()).split(' ')[0]
         ########### setting condition : building sendable lists only each saturday between 10am an 3pm
-        if start.weekday() == 5 and  start.time() >= datetime.time(0, 1) and start.time() <= datetime.time(16, 0) and verif not in date_process:
+        if start.weekday() == 5 and  time(0, 1) <= start.time() <= time(16, 0) and verif not in date_process:
             try:
                 run_sendable_lists()
             except Exception as e:
