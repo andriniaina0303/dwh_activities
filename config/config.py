@@ -35,7 +35,7 @@ class developpement(object):
         "sftphost": "",
         "sftpuser": "",
         "sftppassword": "",
-        "sftppath": ""
+        "sftppath": "/ftp_up/test_andre/"
     }
     
 class production(object):
