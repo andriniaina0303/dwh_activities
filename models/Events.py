@@ -494,7 +494,7 @@ class Events(object):
                 #     sys.stdout = open(logs_file +'.txt','a')
                 timeStart = datetime.now()
                 print(f'#####################{timeStart}###########################')
-                path = str(row['dwh_id'])+'_'+self.dateProcess
+                path = str(row['stats_id'])+'_'+self.dateProcess
                 databaseFolder = os.path.join(self.tmpFolder, path)
                 try:
                     os.mkdir(databaseFolder)
@@ -1032,37 +1032,44 @@ class Events(object):
                     if rows is not None:
                         data = rows.to_dict()
                         myconfig.append(data)
-                    
-                        
-            print('pre-export done the config file')
-            print('request for links download')
+            # print('pre-export done the config file')
+            # print('request for links download')
             ######################### Waiting for link ################################
             for newconfig in myconfig:
                 newconfig = self.requestForDownloadLinks(newconfig)
-            print('all requests sent for the config')
-            print("Waiting for the process at ES")
+            # print('all requests sent for the config')
+            # print("Waiting for the process at ES")
             start = datetime.now()
             ##################### waiting for the links to be available ###############
+            nb_tentative = 0
             while any(d.get("download_links") == "Queued" or d.get("download_links") == "InProgress" for d in myconfig):
                 in_queue = 0
                 in_progress = 0
                 finished = 0
+                remaining_database_inprogress = []
+                remaining_database_queue = []
+                remaining_database_completed = []
+                
                 for newconfig in myconfig:
                     newconfig = self.requestForDownloadLinks(newconfig)
                     if newconfig["download_links"] == 'Completed':
                         finished += 1
+                        remaining_database_completed.append(newconfig['acronyms'])
                     if newconfig["download_links"] == 'InProgress':
                         in_progress += 1
+                        remaining_database_inprogress.append(newconfig['acronyms'])
                     if newconfig["download_links"] == 'Queued':
+                        remaining_database_queue.append(newconfig['acronyms'])
                         in_queue += 1 
                 # time.sleep(self.waiting_delay)
                 total_process = in_queue + in_progress + finished
-                print('*' * 50)
+                print(f'****************************{nb_tentative}*************************************')
                 print(f'Total process => {total_process}')
-                print(f'Completed  => {finished}')
-                print(f'InProgress => {in_progress}')
-                print(f'Queued     => {in_queue}')
-                print('*' * 50)
+                print(f'Completed  => {finished} {remaining_database_completed}')
+                print(f'InProgress => {in_progress} {remaining_database_inprogress}')
+                print(f'Queued     => {in_queue} {remaining_database_queue}')
+                
+                nb_tentative += 1
                 self.afficher_barre_progression(self.waiting_delay)
             ####################### download & extract segments #############################
             end = datetime.now()
