@@ -1081,11 +1081,7 @@ class Events(object):
             ####################### upload to sftp  #############################
             for sl in os.listdir(self.temp_sl):
                 self.uploadToSftp(os.path.join(self.temp_sl, sl))
-                # os.remove(os.path.join(self.temp_sl, sl))
-            # for config in self.myconfig_sl:
-            #     for files in os.listdir(self.temp_sl):
-            #         self.buildSendableLists(config)
-            #         print(f'done for {config["acronyms"]}') 
+                os.remove(os.path.join(self.temp_sl, sl))
         except Exception as e:
             print('error at start process ',e)
             pass

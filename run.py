@@ -1,5 +1,5 @@
 from config.config import developpement as env_dev, production as env_prod
-# from models.Events import Events
+from models.Events import Events
 import time,threading, os
 from datetime import datetime
 
@@ -11,7 +11,6 @@ for dir in dirs:
         try:
             os.mkdir(dir)
         except Exception as e:
-            print(e)
             pass
 
 def run_events_activities():
